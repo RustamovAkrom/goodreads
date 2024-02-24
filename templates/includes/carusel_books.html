@@ -1,0 +1,38 @@
+<section class="book-sale">
+    <div class="heading">
+      <h4>New added Books</h4>
+      <div class="arrowbtn">
+        <i id="left" class="fa-solid fa-angle-left"></i>
+        <i id="right" class="fa-solid fa-angle-right"></i>
+      </div>
+    </div>
+
+    <div class="book-container">
+      <div class="wrapper">
+        <ul class="carousel">
+          {% for book in corusel_books %}
+          <li class="card">
+            <div class="img">
+              <a href="{% url 'books:book-detail' book.slug %}"><img src="{{ book.cover.url }}" alt="" /></a>
+              <span class="badge">book {{ book.id }}</span>
+            </div>
+            <h5>{{ book.title }}</h5>
+            <div class="genre">
+              <span>
+                {% for genre in book.genre.all %}
+                  {{ genre.name }}
+                {% endfor %}
+              </span>
+            </div>
+            <div class="footer">
+              <span class="star"><i class="fa fa-star"></i> 4.7</span>
+            </div>
+          </li>
+          {% empty %}
+          <h3>now books</h3>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    
+  </section>

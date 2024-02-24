@@ -1,0 +1,32 @@
+<div class="footer">
+    <div class="data-shown">
+      <p>Showing 8 from 50 data</p>
+    </div>
+    <div class="pagination">
+      {% if page_obj.has_previous %}
+      <button><i class="fa fa-chevron-left"></i>
+        <a href="{% url 'books:book-list' %}?page={{ page_obj.previous_page_number }}">
+          Previous
+      </a></button>
+    
+      <a href="{% url 'books:book-list' %}?page={{ page_obj.previous_page_number }}">
+        {{ page_obj.previous_page_number }}
+      </a>
+      
+      {% endif %}
+      <div class="number">
+        <a href="{% url 'books:book-list' %}?page={{ page_obj.number }}">{{ page_obj.number }}</a>
+      </div>
+      {% if page_obj.has_next %}
+      <a href="{% url 'books:book-list' %}?page={{ page_obj.next_page_number }}">
+      {{ page_obj.next_page_number }}
+      </a>
+      
+      <button><i class="fa fa-chevron-right">
+        <a href="{% url 'books:book-list' %}?page={{ page_obj.next_page_number }}">
+          Next 
+        </a>
+      </i></button>
+      {% endif  %}
+    </div>
+  </div>

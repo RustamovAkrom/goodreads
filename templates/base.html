@@ -1,0 +1,167 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+    <!--- google font link-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap link  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Fontawesome Link for Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    {% block head %}{% endblock %}
+ 
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+</head>
+<body>
+    <header>
+      <nav class="navbar">
+        <div class="logo">
+          <div class="img">
+            <img src="{% static 'images/logo.png' %}" alt="" />
+          </div>
+          <div class="logo-header">
+            <h4><a href="{% url 'books:home' %}">Goodreads clone</a></h4>
+            <small>welcome goodreads</small>
+          </div>
+        </div>
+        <ul class="nav-list">
+          <div class="logo">
+            <div class="title">
+              <div class="img">
+                <img src="{% static 'images/logo.png' %}" alt="" />
+              </div>
+              <div class="logo-header">
+                <h4><a href="{% url 'books:home' %}">Bookoe</a></h4>
+                <small>Book Store Website</small>
+              </div>
+            </div>
+            <button class="close"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+          <li><a href="{% url 'books:home' %}">Home</a></li>
+          <li><a href="{% url 'books:book-list' %}">Books</a></li>
+          <li><a href="{% url 'books:book-authors' %}">Authors</a></li>
+          {% if user.is_authenticated %}
+          <li><a href="#">Bookshelves</a></li>
+          <li><a href="{% url 'books:add-book' %}"><h3>add book</h3></a></li>
+          <li><a href="{% url 'books:add-author' %}"><h3>add author</h3></a></li>
+          <li><a href="{% url 'users:profile' request.user.id %}">Profile</a></li>
+          <li><a href="{% url 'users:logout' %}">Logout</a></li>
+          {% else %}
+          <button class="login"><a href="{% url 'users:login' %}">Log In</a></button>
+          <button class="signup">
+            <i class="fa-solid fa-user"></i><a href="{% url 'users:register' %}">Sign Up</a>
+          </button>
+          {% endif %}
+        </ul>
+        <div class="hamburger">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </nav>
+    </header>
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">
+        <p>{{ message }}</p>
+    </div>
+    {% endfor %}
+    {% block content %}
+    {% endblock %}
+    <footer>
+      <div class="container">
+        <div class="logo-description">
+          <div class="logo">
+            <div class="img">
+              <img src="{% static 'images/logo.png' %}" alt="" />
+            </div>
+            <div class="title">
+              <h4>Gooodreads</h4>
+              <small>welcome goodreads</small>
+            </div>
+          </div>
+          <div class="logo-body">
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magnam
+              voluptates eius quasi reiciendis recusandae provident veritatis
+              sequi, dolores architecto dolor possimus quos
+            </p>
+          </div>
+          <div class="social-links">
+            <h4>Follow Us</h4>
+            <ul class="links">
+              <li>
+                <a href=""><i class="fa-brands fa-facebook-f"></i></a>
+              </li>
+              <li>
+                <a href=""><i class="fa-brands fa-youtube"></i></a>
+              </li>
+              <li>
+                <a href=""><i class="fa-brands fa-twitter"></i></a>
+              </li>
+              <li>
+                <a href=""><i class="fa-brands fa-linkedin"></i></a>
+              </li>
+              <li>
+                <a href=""><i class="fa-brands fa-instagram"></i></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="categories list">
+          <h4>Book Categories</h4>
+          <ul>
+            <li><a href="Pages/book-filter.html">Action</a></li>
+            <li><a href="Pages/book-filter.html">Adventure</a></li>
+            <li><a href="Pages/book-filter.html">Comedy</a></li>
+            <li><a href="Pages/book-filter.html">Crime</a></li>
+            <li><a href="Pages/book-filter.html">Drama</a></li>
+            <li><a href="Pages/book-filter.html">Fantasy</a></li>
+            <li><a href="Pages/book-filter.html">Horror</a></li>
+          </ul>
+        </div>
+        <div class="quick-links list">
+          <h4>Quick Links</h4>
+          <ul>
+            
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Books</a></li>
+            <li><a href="#">Authors</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Bookshelves</a></li>
+            <li><a href="#">Logout</a></li>
+            {% else %}
+            <li><a href="#">Login</a></li>
+            <li><a href="#">Sign Up</a></li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </footer>
+    <button class="back-to-top"><i class="fa-solid fa-chevron-up"></i></button>
+    <script src="{% static 'js/back-to-top.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+    <script src="{% static 'js/repeat-js.js' %}"></script>
+    <script src="{% static 'js/add-to-cart.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+  </body>
+</html>

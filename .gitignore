@@ -1,0 +1,5 @@
+.git/
+main.py
+.idea
+.env
+.venv

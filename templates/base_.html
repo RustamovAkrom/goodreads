@@ -1,0 +1,38 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+        {% block title %}
+        Bootstrap demo
+        {% endblock %}
+    </title>
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    {% block head %}{% endblock %}
+</head>
+<body>
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">
+        <p>{{ message }}</p>
+    </div>
+    {% endfor %}
+    <div class="container-fluid">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col mt-4 my-5">
+                    <h3>Title</h3>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorum, veniam architecto? Hic, repellendus voluptatum alias praesentium, ab pariatur quia eveniet perferendis quod dolor eum consequatur cumque officiis! Velit, facilis ipsam.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

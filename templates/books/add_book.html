@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Add book {% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="title">
+        <h3>
+            add Book *
+        </h3>
+    </div>
+    <form action="{% url 'books:add-book' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">save</button>
+    </form>
+</div>
+{% endblock %}

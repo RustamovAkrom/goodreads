@@ -1,0 +1,49 @@
+{% extends 'base_.html' %}
+{% load static %}
+{% block title %} Registration {% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+<link rel="stylesheet" href="{% static 'css/book-filter.css' %}" />
+{% endblock %}
+{% block content %}
+    <!-- <h3>Welcome login page</h3>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">login</button>
+    </form> -->
+    <div class="breadcrumb-container">
+        <ul class="breadcrumb">
+          <li><a href="{% url 'books:home' %}" style="color: #6c5dd4">Home</a></li>
+          <li><a href="#">Login</a></li>
+        </ul>
+    </div>
+    <section class="login">
+        <h3>Login</h3>
+        <div class="login-form">
+          <h4>Login</h4>
+          <p>If you have an account with us, please log in.</p>
+          <div class="input-form">
+            <form action="{% url 'users:login' %}" method="post">
+              {% csrf_token %}
+                <div class="input-field">
+                <label for="email">Email *</label>
+                {{ form.username }}
+                <!-- <input type="email" name="" id="email" placeholder="Your Email"> -->
+                </div>
+
+                <div class="input-field">
+                <label for="password">Password *</label>
+                {{ form.password }}
+                <!-- <input type="password" name="" id="password" placeholder="Password"> -->
+                </div>
+                <button type="submit">Login Account</button>
+            </form>
+                
+            <p>Forgot Password ?<a href=""> Click Here</a></p>
+            <p>Don't Have an Account ? <a href="registration.html">Create Account</a></p>
+          </div>
+        </div>
+      </section>
+{% endblock %}

@@ -1,0 +1,171 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Home {% endblock %}
+
+{% block content %}
+<section class="suggestion">
+    <div class="container">
+      <div class="recommend">
+        <h4>Recommended books For You</h4>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Id,
+          exercitationem.Lorem ipsum dolor sit amet.
+        </p>
+        <div class="book-container">
+          {% for book in recomendet_books %}
+          <div class="book">
+            <figure>
+              <a href="{% url 'books:book-detail' book.slug %}"
+                ><img src="{{ book.cover.url }} " alt=""
+              /></a>
+            </figure>
+          </div>
+          {% endfor %}
+        <div class="circle-1"></div>
+        <div class="circle-2"></div>
+      </div>
+  </section>
+
+  <section class="sale">
+    <div class="header">
+      <h4>Videos</h4>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. <br />
+        Ipsum dignissimos quasi aliquid numquam.
+      </p>
+    </div>
+    <div class="book-container">
+      {% for video in videos %}
+      <div class="book">
+        <div class="img">
+          <a href="#">
+            <img src="{{ video.video.url }}" alt="" />
+          </a>
+        </div>
+        <h5>{{ video.title }}</h5>
+        <small>{{ video.genre }}</small>
+      </div>
+      {% empty %}
+      <h3>Now videos</h3>
+      {% endfor %}
+    </div>
+  </section>
+  {% include 'includes/carusel_books.html' %}
+  <section class="feature">
+    <div class="main">
+      <div class="content">
+        <h4>Featured Books</h4>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. <br />
+          Molestias, illum? Doloremque eius quis officiis rerum pariatur.
+        </p>
+      </div>
+      <div class="book-section">
+        <div class="container">
+          <div class="img">
+            <a href="pages/book-detail.html"><img src="{% static 'images/book-2.jpg' %}" alt="" /></a>
+          </div>
+          <div class="img">
+            <a href="pages/book-detail.html"><img src="{% static 'images/book-1.jpg' %}" alt="" /></a>
+          </div>
+          <div class="img">
+            <a href="pages/book-detail.html"><img src="{% static 'images/book-3.jpg' %}" alt="" /></a>
+          </div>
+          <div class="img">
+            <a href="pages/book-detail.html"><img src="{% static 'images/book-4.jpg' %}" alt="" /></a>
+          </div>
+          <div class="img">
+            <a href="pages/book-detail.html"><img src="{% static 'images/book-5.jpg' %}" alt="" /></a>
+          </div>
+          <div class="img">
+            <a href="pages/book-detail.html"><img src="{% static 'images/book-6.jpg' %}" alt="" /></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="circle-1"></div>
+    <div class="circle-2"></div>
+  </section>
+
+  <section class="news">
+    <div class="heading">
+      <div class="title">
+        <h4>Latest News</h4>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. <br />
+          Quia, laborum ad perspiciatis ab, sequi.
+        </p>
+      </div>
+      <div class="btn">
+        <button>View More <i class="fa-solid fa-arrow-right"></i></button>
+      </div>
+    </div>
+    <div class="news-container">
+      {% for news in latest_news %}
+      <div class="post">
+        <div class="img">
+          <img src="{% static 'images/news-1.avif' %}" alt="" />
+        </div>
+        <h5>Why reading is important for our children?</h5>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+          Aspernatur, quo temporibus! Tenetur...
+          <a href="">Continue reading</a>
+        </p>
+        <div class="post-footer">
+          <div class="img">
+            <img src="images/man1.png" alt="" />
+          </div>
+          <div class="details">
+            <strong>James Bond</strong>
+            <small>5 August 2020</small>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <h3>Now news</h3>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="countdown">
+    <div class="container">
+      <div class="customer counter">
+        <div class="icon">
+          <i class="fa-solid fa-user-group"></i>
+        </div>
+        <div class="content">
+          <h4 class="count">125,663</h4>
+          <small>Happy Customers</small>
+        </div>
+      </div>
+      <div class="book counter">
+        <div class="icon">
+          <i class="fa-solid fa-book"></i>
+        </div>
+        <div class="content">
+          <h4 class="count">50,672</h4>
+          <small>Book Collections</small>
+        </div>
+      </div>
+      <div class="store counter">
+        <div class="icon">
+          <i class="fa-solid fa-store"></i>
+        </div>
+        <div class="content">
+          <h4 class="count">1,562</h4>
+          <small>Our Stores</small>
+        </div>
+      </div>
+      <div class="writer counter">
+        <div class="icon">
+          <i class="fa-solid fa-feather"></i>
+        </div>
+        <div class="content">
+          <h4 class="count">457</h4>
+          <small>Famous Writer</small>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

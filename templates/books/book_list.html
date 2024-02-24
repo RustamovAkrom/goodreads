@@ -1,0 +1,55 @@
+{% extends 'base_.html' %}
+{% load static %}
+{% block title %} Books {% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="{% static 'css/book-filter.css' %}" />
+{% endblock %}
+
+{% block content %}
+<div class="breadcrumb-container">
+  <ul class="breadcrumb">
+    <li><a href="{% url 'books:home' %}" style="color: #6c5dd4">Home</a></li>
+    <li><a href="#">Books</a></li>
+  </ul>
+</div>
+
+<section class="filter">
+  <div class="book-grid-container">
+    <div class="book-collections">
+      <h4>Books</h4>
+      <div class="books">
+        {% for book in page_obj %}
+        <div class="book-card">
+          <div class="img">
+            <a href="{% url 'books:book-detail' book.slug %}"><img src="{{ book.cover.url }}" alt="img" /></a>
+            <button class="like" id="likebtn">
+              <i class="fa-regular fa-heart"></i>
+            </button>
+          </div>
+          <h5>{{ book.title }}</h5>
+          <div class="star-rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% include 'includes/base_paginator.html' %}
+    </div>
+  </div>
+</section>
+{% include 'includes/carusel_books.html' %}
+<!-- <script src="{% static 'js/back-to-top.js' %}"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script> -->
+<!-- <script src="{% static 'js/script.js' %}"></script> -->
+<script src="{% static 'js/repeat-js.js' %}"></script>
+<!-- <script src="{% static 'js/add-to-cart.js' %}"></script> -->
+<!-- <script src="https://code.jquery.com/jquery-3.6.3.js"></script> -->
+{% endblock %}

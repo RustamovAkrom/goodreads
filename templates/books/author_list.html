@@ -1,0 +1,63 @@
+{% extends 'base_.html' %}
+{% load static %}
+{% block title %} Book Detail {% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="{% static 'css/book-filter.css' %}" />
+{% endblock %}
+
+{% block content %}
+<div class="breadcrumb-container">
+  <ul class="breadcrumb">
+    <li><a href="{% url 'books:home' %}" style="color: #6c5dd4">Home</a></li>
+    <li><a href="{% url 'books:book-list' %}" style="color: #6c5dd4">Books</a></li>
+    <li><a href="#">Authors</a></li>
+  </ul>
+</div>
+<section class="filter">
+  <div class="book-grid-container">
+    <div class="book-collections">
+      <h4>Book Authors *</h4>
+      <div class="books">
+        {% for author in authors %}
+        <div class="book-card">
+          <div class="img">
+            <a href="{% url 'books:book-author' author.id %}"><img src="{{ author.avatar.url }}" alt="img" /></a>
+            <button class="like" id="likebtn">
+              <i class="fa-regular fa-heart"></i>
+            </button>
+          </div>
+          <h4>{{ author.first_name }} {{ author.last_name }}</h4>
+          <small>{{ author.birthdate }}</small>
+        </div>
+        {% endfor %}
+      </div>
+      {% include 'includes/base_paginator.html' %}
+    </div>
+  </div>
+</section>
+<!-- <br>
+<h4><center>Authors</center></h4>
+<hr>
+<div class="card-group">
+    {% for author in authors %}
+    <div class="card my-4">
+        <center>
+            <img src="{{ author.avatar.url }}" class="img-fluid" alt="...">
+        </center>
+      <div class="my-4">
+        <div class="card-body">
+          <a href="{% url 'books:book-author' author.id %}">
+            <h5 class="card-title">{{ author.first_name }} {{ author.last_name }}</h5>
+          </a>
+        </div>
+      </div>
+  </div>
+    {% empty %}
+    <h3>Now auhtor</h3>
+    {% endfor %}
+  </div>
+<hr> -->
+<script src="{% static 'js/repeat-js.js' %}"></script>
+{% endblock %}

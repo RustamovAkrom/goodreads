@@ -1,0 +1,34 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block title %} Registration {% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+<link rel="stylesheet" href="{% static 'css/book-filter.css' %}" />
+{% endblock %}
+
+{% block content %}
+<div class="breadcrumb-container">
+    <ul class="breadcrumb">
+      <li><a href="{% url 'books:home' %}" style="color: #6c5dd4">Home</a></li>
+      <li><a href="{% url 'users:register' %}" style="color: #6c5dd4">Registration</a></li>
+      <li><a href="#">logout</a></li>
+    </ul>
+  </div>
+  <section class="registration">
+    <h3>Welcome logou page</h3>
+    <h2>You are log out ?</h2>
+    <div class="registration-form">
+        <div class=""></div>
+        <center>
+            <form action="{% url 'users:logout' %}" method="post" style="color: red;">
+                {% csrf_token %}
+                <button class="btn" type="submit">Yes</button>
+            </form>
+            <a href="{% url 'books:home' %}"><button class="btn">Now</button></a>
+        </center>
+    </div>
+  </section>
+
+
+{% endblock %}

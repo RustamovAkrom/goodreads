@@ -1,0 +1,35 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block title %} Registration {% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+<link rel="stylesheet" href="{% static 'css/book-filter.css' %}" />
+{% endblock %}
+
+{% block content %}
+<div class="breadcrumb-container">
+    <ul class="breadcrumb">
+      <li><a href="{% url 'books:home' %}" style="color: #6c5dd4">Home</a></li>
+      <li><a href="#">Registration</a></li>
+    </ul>
+  </div>
+
+  <section class="registration">
+    <h3>Registration</h3>
+       
+        <div class="registration-form">
+            <h4>Create New Account</h4>
+            <p>If you don't have an account with us, Please Create new account.</p>
+            <form action="{% url 'users:register' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Create account</button>
+            </form>
+            <p>Already Have an Account ? <a href="{% url 'users:login' %}">Login Now</a></p>
+            </div>
+          </div>
+    
+  </section>
+<script src="{% static 'js/back-to-top.js' %}"></script>
+{% endblock %}

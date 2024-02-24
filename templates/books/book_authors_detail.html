@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Book Detail {% endblock %}
+
+{% block content %}
+<h3>Author page</h3>
+  <div class="row mt-5">
+    <div class="col-3">
+        <img src="{{ author.avatar.url }}" class="img-fluid" alt="...">
+    </div>
+    <div class="col-6">
+      <h2>
+        {{ author.first_name }} {{ author.last_name }}
+      </h2><hr>
+      <small>website: </small>
+      <a href="{{ author.website }}">{{ author.website }}</a><br>
+      <span><small>birthdate: </small></span>
+      <small>{{ author.birthdate }}</small>
+      <hr><center>About</center>
+      <p>{{ author.about }}</p>
+      <hr>
+    </div>
+  </div>
+
+<section class="book-sale">
+  <div class="heading">
+    <h4>books {{ author.first_name }} {{ author.last_name }} *</h4>
+    <div class="arrowbtn">
+      <i id="left" class="fa-solid fa-angle-left"></i>
+      <i id="right" class="fa-solid fa-angle-right"></i>
+    </div>
+  </div>
+  <div class="book-container">
+    <div class="wrapper">
+      <ul class="carousel">
+        {% for book in author.books.all %}
+        <li class="card">
+          <div class="img">
+            <a href="{% url 'books:book-detail' book.slug %}"><img src="{{ book.cover.url }}" alt="" /></a>
+            <span class="badge">50%</span>
+          </div>
+          <h5>The Giver</h5>
+          <div class="genre">
+            <span>
+              {% for genre in book.genre.all %}
+                {{ genre.name }}
+              {% endfor %}
+            </span>
+          </div>
+          <div class="footer">
+            <span class="star"><i class="fa fa-star"></i> 4.7</span>
+          </div>
+        </li>
+        {% empty %}
+        <h3>now books</h3>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
+<!-- <h3>Author page</h3>
+  <div class="row mt-5">
+    <div class="col-3">
+        <img src="{{ author.avatar.url }}" class="img-fluid" alt="...">
+    </div>
+    <div class="col-6">
+      <h2>
+        {{ author.first_name }} {{ author.last_name }}
+      </h2><hr>
+      website: 
+      <a href="{{ author.website }}">{{ author.website }}</a><br>
+      birthdate: 
+      <small>{{ author.birthdate }}</small>
+      <p>{{ author.about }}</p>
+      <hr>
+    </div>
+  </div>
+  <center><br><h4>Author books</h4><br></center>
+  {% for book in author.books.all %}
+    <div class="col-3 my-4 mt-5">
+      <img src="{{ book.cover.url }}" alt="img">
+    </div>
+    <div class="col-6">
+      <a href="{% url 'books:book-detail' book.slug %}">{{ book.title }}</a>
+    </div>
+  {% endfor %} -->
+  
+{% endblock %}

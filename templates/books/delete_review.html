@@ -1,0 +1,14 @@
+{% extends 'base_.html' %}
+{% load static %}
+{% block title %} Add author {% endblock %}
+
+{% block content %}
+<div class="container">
+    <form method="post">
+        <h3>Delete it is review</h3>
+        {% csrf_token %}
+        <button type="submit">delete</button>
+        <a href="{% url 'books:book-detail' review.book.slug %}"><button>now</button></a>
+    </form>
+</div>
+{% endblock %}
